@@ -1,0 +1,29 @@
+{
+  "name": "merntutorial2022",
+  "version": "1.0.0",
+  "description": "MERN Tutorial 2022",
+  "main": "server.ts",
+  "scripts": {
+    "start": "node backend/server.ts",
+    "server": "nodemon backend/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-mq/MERNTutorial2022.git"
+  },
+  "author": "j-mq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j-mq/MERNTutorial2022/issues"
+  },
+  "homepage": "https://github.com/j-mq/MERNTutorial2022#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
