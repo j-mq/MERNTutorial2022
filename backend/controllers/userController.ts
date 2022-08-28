@@ -4,18 +4,6 @@ import asyncHandler from "express-async-handler";
 import { IUser, User } from "../models/userModel";
 import { Document, Types } from "mongoose";
 
-//Extending the Request interface to receive the user object
-declare module "express-serve-static-core" {
-  interface Request {
-    user:
-      | (Document<unknown, any, IUser> &
-          IUser & {
-            _id: Types.ObjectId;
-          })
-      | null;
-  }
-}
-
 //@desc   Register new user
 //@route  POST /api/users
 //@access Public

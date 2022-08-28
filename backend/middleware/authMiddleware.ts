@@ -1,19 +1,6 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import { IUser, User } from "../models/userModel";
-import { Document, Types } from "mongoose";
-
-//Extending the Request interface to receive the user object
-declare module "express-serve-static-core" {
-  interface Request {
-    user:
-      | (Document<unknown, any, IUser> &
-          IUser & {
-            _id: Types.ObjectId;
-          })
-      | null;
-  }
-}
+import { User } from "../models/userModel";
 
 export const protect = asyncHandler(async (req, res, next) => {
   let token: string = "";
