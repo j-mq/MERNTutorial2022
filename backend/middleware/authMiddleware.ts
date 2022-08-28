@@ -1,6 +1,19 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import { User } from "../models/userModel";
+import { IUser, User } from "../models/userModel";
+import { Document, Types } from "mongoose";
+
+//Extending the Request interface to receive the user object
+declare module "express-serve-static-core" {
+  interface Request {
+    user:
+      | (Document<unknown, any, IUser> &
+          IUser & {
+            _id: Types.ObjectId;
+          })
+      | null;
+  }
+}
 
 export const protect = asyncHandler(async (req, res, next) => {
   let token: string = "";
@@ -17,8 +30,8 @@ export const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET) as {
         id: string;
       };
-      const user = await User.findById(decoded.id).select("-password");
-      //TODO: Add user to the request object. Currently TS doesnt allow it
+
+      req.user = await User.findById(decoded.id).select("-password");
 
       next();
     } catch (error) {

@@ -1,8 +1,20 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
-import { User } from "../models/userModel";
-import { Types } from "mongoose";
+import { IUser, User } from "../models/userModel";
+import { Document, Types } from "mongoose";
+
+//Extending the Request interface to receive the user object
+declare module "express-serve-static-core" {
+  interface Request {
+    user:
+      | (Document<unknown, any, IUser> &
+          IUser & {
+            _id: Types.ObjectId;
+          })
+      | null;
+  }
+}
 
 //@desc   Register new user
 //@route  POST /api/users
@@ -71,8 +83,14 @@ export const loginUser = asyncHandler(async (req, res) => {
 //@desc   Get user data
 //@route  GET /api/users/me
 //@access Private
-export const getMe = asyncHandler(async (req: any, res: any) => {
-  res.json({ message: "User data display" });
+export const getMe = asyncHandler(async (req, res) => {
+  if (req.user) {
+    const user = await User.findById(req.user.id);
+    if (user) {
+      const { _id, name, email } = user;
+      res.status(200).json({ id: _id, name, email });
+    }
+  }
 });
 
 //Generate JWT
