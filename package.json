@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node backend/server.ts",
     "server": "nodemon backend/server.ts",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.9",
+    "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
   }
 }
