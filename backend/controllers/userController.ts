@@ -73,11 +73,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 //@access Private
 export const getMe = asyncHandler(async (req, res) => {
   if (req.user) {
-    const user = await User.findById(req.user.id);
-    if (user) {
-      const { _id, name, email } = user;
-      res.status(200).json({ id: _id, name, email });
-    }
+    res.status(200).json(req.user);
   }
 });
 
