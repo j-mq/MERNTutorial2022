@@ -1,23 +1,46 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { logout, reset } from "../features/auth/authSlice";
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
+
   return (
-    <header className='header'>
-      <div className='logo'>
-        <Link to='/'>GoalSetter</Link>
+    <header className="header">
+      <div className="logo">
+        <Link to="/">GoalSetter</Link>
       </div>
       <ul>
-        <li>
-          <Link to='/login'>
-            <FaSignInAlt /> Login
-          </Link>
-        </li>
-        <li>
-          <Link to='/register'>
-            <FaUser /> Register
-          </Link>
-        </li>
+        {user ? (
+          <li>
+            <button className="btn" onClick={onLogout}>
+              <FaSignOutAlt /> Logout
+            </button>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/login">
+                <FaSignInAlt /> Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/register">
+                <FaUser /> Register
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </header>
   );
