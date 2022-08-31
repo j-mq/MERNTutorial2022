@@ -1,8 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 
+export interface LocalStorageUser {
+  email: string;
+  name: string;
+  token: string;
+  _id: string;
+}
+
 // Get user from localStorage
-const getUserFromLocalStorage = (): string | null => {
+const getUserFromLocalStorage = (): LocalStorageUser | null => {
   const localStorageUser = localStorage.getItem("user");
   if (localStorageUser) {
     return JSON.parse(localStorageUser);
