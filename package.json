@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/j-mq/MERNTutorial2022#readme",
   "dependencies": {
+    "@types/express-serve-static-core": "^4.17.30",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.1",
