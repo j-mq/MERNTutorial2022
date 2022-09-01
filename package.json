@@ -2,7 +2,7 @@
   "name": "merntutorial2022",
   "version": "1.0.0",
   "description": "MERN Tutorial 2022",
-  "main": "dist/index.js",
+  "main": "dist/backend/server.js",
   "scripts": {
     "start": "node .",
     "server": "nodemon backend/server.ts",
