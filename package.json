@@ -2,20 +2,14 @@
   "name": "merntutorial2022",
   "version": "1.0.0",
   "description": "MERN Tutorial 2022",
-  "main": "server.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "postinstall": "tsc",
-    "watch-node": "nodemon dist/index.js",
-    "watch-ts": "tsc -w",
+    "start": "node .",
     "server": "nodemon backend/server.ts",
+    "build": "tsc",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
-  },
-  "engines": {
-    "node": "16.15.0"
   },
   "repository": {
     "type": "git",
@@ -34,8 +28,7 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.5.3",
-    "ts-node": "^10.9.1"
+    "mongoose": "^6.5.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -43,5 +36,9 @@
     "@types/jsonwebtoken": "^8.5.9",
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
+  },
+  "nodemonConfig": {
+    "ext": "ts",
+    "exec": "npm run build && npm start"
   }
 }
