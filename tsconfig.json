@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "target": "ES2019",
+
     "esModuleInterop": true,
-    "outDir": "./dist"
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "test"]
