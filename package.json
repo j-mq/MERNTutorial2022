@@ -4,12 +4,13 @@
   "description": "MERN Tutorial 2022",
   "main": "server.ts",
   "scripts": {
+    "build": "rimraf ./build && tsc",
     "start": "node build/server.js",
     "server": "nodemon backend/server.ts",
-    "build": "rimraf ./build && tsc",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
