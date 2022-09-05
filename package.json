@@ -9,9 +9,7 @@
     "build": "rimraf ./build && tsc",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix",
-    "tsc": "tsc",
-    "postinstall": "npm run tsc"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix"
   },
   "repository": {
     "type": "git",
