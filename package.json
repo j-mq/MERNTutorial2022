@@ -4,7 +4,7 @@
   "description": "MERN Tutorial 2022",
   "main": "server.ts",
   "scripts": {
-    "build": "rimraf ./build && tsc",
+    "build": "rimraf ./app/build && tsc",
     "start": "node build/server.js",
     "server": "nodemon backend/server.ts",
     "client": "npm start --prefix frontend",
